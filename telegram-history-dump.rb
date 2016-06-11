@@ -296,8 +296,8 @@ $log.info('Backing up %d dialogs: %s' % [
 
 $dumper.start_backup
 backup_list.each_with_index do |dialog,i|
+  sleep($config['chunk_delay']) if i > 0
   begin
-    sleep($config['chunk_delay']) if i > 0
     connect_socket
     dump_dialog(dialog)
   rescue RetryError
