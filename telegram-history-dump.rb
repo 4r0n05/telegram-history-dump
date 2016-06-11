@@ -300,10 +300,10 @@ backup_list.each_with_index do |dialog,i|
   begin
     connect_socket
     dump_dialog(dialog)
+    save_progress
   rescue RetryError
     $log.error('Timeout, skipping to next dialog')
     disconnect_socket
-    save_progress
   end
 end
 $dumper.end_backup
